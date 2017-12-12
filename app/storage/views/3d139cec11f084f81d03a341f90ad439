@@ -1,0 +1,34 @@
+<?php $__env->startSection('title'); ?>
+Edit profanity
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h3>Edit profanity</h3>
+
+	<?php echo Form::open(array('route' => 'postEditProfanity' )); ?>
+
+		<?php echo Form::hidden('id', $p->id); ?> 
+
+	<div class="form-group <?php echo ($errors->has('word')) ? 'has-error' : ''; ?>"><br>
+		<?php echo Form::label('Word'); ?> 
+		<?php echo Form::text('word', $p->word, array('class' => 'form-control', 'required' => 'required')); ?>
+
+
+		<?php if($errors->has('word')): ?>
+			<strong>
+			<?php echo $errors->first('word'); ?>
+
+			</strong>
+		<?php endif; ?>
+		<br>
+ 	</div>
+
+	<?php echo Form::submit('post', array('class' => 'btn btn-primary')); ?>
+
+<?php echo Form::close(); ?>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

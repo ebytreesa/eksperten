@@ -1,0 +1,31 @@
+<?php $__env->startSection('title'); ?>
+Edit svar
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h3>Edit svar</h3>
+
+<?php echo Form::open(array('route' => 'postEditAnswer' )); ?>
+
+ 	 	
+	<div class="form-group <?php echo ($errors->has('answer')) ? 'has-error' : ''; ?>"><br>
+		<?php echo Form::hidden('id', $answer->id); ?>
+
+		<?php echo Form::textarea('answer', $answer->answer, array('class' => 'form-control', 'required' => 'required')); ?>
+
+
+		<?php if($errors->has('answer')): ?>
+			<strong>
+			<?php echo $errors->first('answer'); ?>
+
+			</strong>
+		<?php endif; ?>
+		<br>
+
+ 		<?php echo Form::submit('post', array('class' => 'btn btn-primary')); ?>
+
+	<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

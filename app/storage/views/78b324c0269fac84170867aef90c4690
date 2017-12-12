@@ -1,0 +1,32 @@
+<?php $__env->startSection('title'); ?>
+home
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<center><h4>ADMIN PANEL</h4></center>
+<h3>User List</h3>
+<table class="table table-responsive table-striped" style="border: 1px solid gray;">
+  		<thead class="thead-inverse" style="background-color: black; color: white;">
+    		<tr >
+     			<th>#</th>
+      			<th>Username</th>
+      			<th>Email</th>
+            <th>points</th>
+      			<th>Slet</th>
+      		</tr>
+ 		 </thead>
+  		<tbody>
+  		<?php foreach($users as $user): ?>
+    		<tr>
+    			<td>#</td>
+     			<td> <?php echo $user->username; ?></td>     				
+     			<td><?php echo $user->email; ?></td>
+          <td><?php echo $user->points; ?></td>
+      			<td><a href="/admin/deleteUser/<?php echo $user->id; ?>" class="btn btn-danger btn-xs">delete</a></td>
+      			
+   		    </tr>
+   		<?php endforeach; ?>
+   		</tbody>
+    </table>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,73 @@
+<?php $__env->startSection('title'); ?>
+Edit spørgsmål
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+ <?php if(Auth::check() && (Auth::user()->admin == 1)): ?>
+		<center><h4>Admin </h4></center>
+		<?php endif; ?> 
+<h3>Edit spørgsmål</h3>
+
+<?php echo Form::open(array('route' => 'postEditQuestion' )); ?>
+
+ 	<?php echo Form::hidden('id', $q->id); ?> 
+	    <div class="form-group <?php echo ($errors->has('title')) ? 'has-error' : ''; ?>"><br>
+			<?php echo Form::label('Title'); ?> 
+			<?php echo Form::text('title', $q->title, array('class' => 'form-control', 'required' => 'required')); ?>
+
+
+				<?php if($errors->has('title')): ?>
+					<strong>
+					<?php echo $errors->first('title'); ?>
+
+					</strong>
+				<?php endif; ?>
+		<br>
+
+		<?php echo Form::textarea('question', $q->question, array('class' => 'form-control', 'required' => 'required')); ?>
+
+
+		<?php if($errors->has('question')): ?>
+			<strong>
+			<?php echo $errors->first('question'); ?>
+
+			</strong>
+		<?php endif; ?>
+		<br>
+
+		<div class="form-group">
+	<?php echo Form::label('Category'); ?>
+
+	<select name="cat">		
+			<?php
+			$cat =Category::get();
+			?>
+			<?php foreach($cat as $cat): ?>
+			<option value="<?php echo $cat->id; ?>" data="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
+			<?php endforeach; ?>
+		
+	</select>
+
+		<div class="form-group <?php echo ($errors->has('points')) ? 'has-error' : ''; ?>"><br>
+		<?php echo Form::label('Points'); ?> 
+		<?php echo Form::number('points', $q->points, array('class' => 'form-control', 'required' => 'required')); ?>
+
+
+		<?php if($errors->has('points')): ?>
+			<strong>
+			<?php echo $errors->first('points'); ?>
+
+			</strong>
+		<?php endif; ?>
+		<br>
+	</div>	
+
+ 		<?php echo Form::submit('post', array('class' => 'btn btn-primary')); ?>
+
+		
+
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

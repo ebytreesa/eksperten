@@ -1,0 +1,71 @@
+<?php $__env->startSection('title'); ?>
+home
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+<div >
+<br><br>
+  <h3 style="display:inline; height: 40px; ">Seneste sprogsmål</h3>
+  
+  <a href="/home/addQuestion" class="btn pull-right" style="float:right; background-color: green; color:white; height: 30px;" >Opret sprøgsmål</a>
+  </div>
+  <br>
+  <div class="row">
+
+  <table class="table table-responsive table-striped" style="border: 1px solid gray;">
+      <thead class="thead-inverse" style="background-color: black; color: white;">
+        <tr >
+          <th>#</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Indlæg</th>
+             <th>points</th>
+            <th>Oprettet</th>
+            
+
+        </tr>
+     </thead>
+      <tbody>
+      <?php foreach($questions as $q): ?>
+        <tr>
+          <td></td>
+          <td><a href="/home/showQuestion/<?php echo $q->id; ?>"><?php echo $q->title; ?></a>
+            <?php
+              $user = User::where('id', $q->user_id)->first();
+              ?>
+            <p style="color:blue;"> af: <?php echo $user->username; ?> </p>
+
+            <?php if( Auth::check() && (Auth::user()->id == $q->user_id) ): ?>
+              <a href="/deleteQuestion/<?php echo $q->id; ?>" class="btn btn-danger btn-xs">delete</a>
+             <a href="/editQuestion/<?php echo $q->id; ?>" class="btn btn-info btn-xs">edit</a>
+            <?php endif; ?>
+          </td> 
+
+          <td>
+             <?php
+              $cat = Category::where('id', $q->cat_id)->first();
+              ?>
+              <?php echo $cat->name; ?> 
+           </td>
+
+          <td>
+             <?php
+              $count = Answer::where('q_id', $q->id)->count();
+              ?>
+              <?php echo $count; ?>
+
+          </td>
+          <td><?php echo $q->points; ?></td>
+          <td><?php echo $q->created_at; ?></td>
+          
+        </tr>
+      <?php endforeach; ?>
+      </tbody>
+    </table>
+</div>
+	<center><?php echo $questions->links(); ?></center>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

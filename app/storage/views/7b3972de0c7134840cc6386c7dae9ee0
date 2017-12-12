@@ -1,0 +1,29 @@
+<?php $__env->startSection('title'); ?>
+admin
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="row" style="padding-left:100px;">
+<h1>Admin</h1>
+
+<p>Username : <?php echo Auth::user()->username; ?></p>
+<p>Email : <?php echo Auth::user()->email; ?></p>
+</div>
+<div class="col-sm-12" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+  <a href="/admin/listUsers" ><h3>USERS</h3></a>
+</div>
+
+<div class="col-sm-12" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+  <a href="/admin/listCat" ><h3>CATEGORIES</h3></a>
+</div>
+<div class="col-sm-12" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+  <a href="/admin/listQA" class="admin-items"> <h3>QA</h3></a>
+</div>
+<div class="col-sm-12" style="border:1px solid green; margin:10px;padding-bottom:10px;text-align:center;">
+  <a href="/admin/listProfanity" class="admin-items"> <h3>Bandeords</h3></a>
+</div>
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

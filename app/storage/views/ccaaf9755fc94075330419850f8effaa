@@ -1,0 +1,44 @@
+<?php $__env->startSection('title'); ?>
+login
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h1>Login</h1>
+
+<?php echo Form::open(array( 'route' => 'postLogin')); ?>
+
+
+<div class="form-group <?php echo ($errors->has('username')) ? ' has-error' : ''; ?>">
+		<?php echo Form::label('Username'); ?>
+
+		<?php echo Form::text('username', '' , array('class' => 'form-control')); ?>
+
+		<?php if($errors->has('username')): ?>
+		<strong>
+			<?php echo $errors->first('username'); ?>
+
+		</strong>
+		<?php endif; ?>
+	</div>
+
+	<div class="form-group <?php echo ($errors->has('password')) ? ' has-error': ''; ?>">
+		<?php echo Form::label('Password'); ?>
+
+		<?php echo Form::password('password',  array('class' => 'form-control' )); ?>
+
+		<?php if($errors->has('password')): ?>
+		<strong>
+			<?php echo $errors->first('password'); ?>
+
+		</strong>
+		<?php endif; ?>
+	</div>
+	<?php echo Form::submit('Login', array('class'  => 'btn btn-primary')); ?>
+
+<?php echo Form::close(); ?>
+
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

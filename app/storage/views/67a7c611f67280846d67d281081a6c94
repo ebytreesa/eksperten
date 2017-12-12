@@ -1,0 +1,77 @@
+<?php $__env->startSection('title'); ?>
+register
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container" style="width:70%;">
+<h1>Register</h1>
+
+
+<?php echo Form::open(array('route' => 'postRegister')); ?>
+
+
+	<div class="form-group <?php echo ($errors->has('username')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Username'); ?>
+
+		<?php echo Form::text('username', '', array('class' => 'form-control')); ?>
+
+		<?php if($errors->has('username')): ?>
+			<strong>
+				<?php echo $errors->first('username'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+		
+
+		
+	<div class="form-group <?php echo ($errors->has('email')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Email'); ?>
+
+		<?php echo Form::email('email', '', array('class' => 'form-control')); ?>
+
+		<?php if($errors->has('email')): ?>
+			<strong>
+				<?php echo $errors->first('email'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<div class="form-group <?php echo ($errors->has('pass1')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Password'); ?>
+
+		<?php echo Form::password('pass1',  array('class' => 'form-control')); ?>
+
+		<?php if($errors->has('pass1')): ?>
+			<strong>
+				<?php echo $errors->first('pass1'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+
+		<div class="form-group <?php echo ($errors->has('pass2')) ? 'has-error' : ''; ?>">
+		<?php echo Form::label('Password igen'); ?>
+
+		<?php echo Form::password('pass2',  array('class' => 'form-control')); ?>
+
+		<?php if($errors->has('pass2')): ?>
+			<strong>
+				<?php echo $errors->first('pass2'); ?>
+
+			</strong>
+		<?php endif; ?>
+		</div>
+		<br>
+		<?php echo Form::submit('Opret bruger', array('class' => 'btn btn-primary')); ?>
+
+<?php echo Form::close(); ?>
+
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
